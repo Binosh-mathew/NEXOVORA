@@ -80,14 +80,6 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
             </div>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="ml-6 px-6 py-2.5 bg-gradient-to-r from-premium to-accent rounded-full text-white text-sm font-semibold shadow-lg shadow-premium/20 hover:shadow-premium/40 transition-all duration-300"
-            >
-              Get Started
-            </motion.button>
           </div>
 
           {/* Mobile menu button */}
@@ -139,9 +131,6 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-premium to-accent rounded-xl text-white font-semibold shadow-lg shadow-premium/20">
-                Get Started
-              </button>
             </div>
           </motion.div>
         )}
