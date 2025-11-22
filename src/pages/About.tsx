@@ -5,216 +5,164 @@ const About: React.FC = () => {
   const milestones = [
     {
       year: "2023",
-      title: "Foundation",
+      title: "The Genesis",
       description:
-        "Nexovora was born in the college incubator with a vision to impact the world through technology.",
+        "Nexovora emerged from the crucible of academic innovation, founded with a singular vision: to bridge the gap between theoretical brilliance and practical impact.",
     },
     {
       year: "2024",
-      title: "First Products",
+      title: "First Breakthroughs",
       description:
-        "Launched PrintSpark and began development on Mini ADAS and AI Traffic Controller.",
+        "Launch of PrintSpark and the unveiling of our Mini ADAS prototype. We moved from concept to reality, proving that student-led innovation can rival industry standards.",
     },
     {
       year: "2025",
-      title: "Scaling Up",
+      title: "Global Horizons",
       description:
-        "Expanding our team and preparing for market penetration with our innovative solutions.",
+        "Scaling our operations and refining our AI Traffic Controller. We are now poised to redefine urban mobility and educational infrastructure on a global scale.",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-16 bg-neutral-900 text-white">
+    <div className="min-h-screen pt-20 bg-background text-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] bg-premium/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px]" />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Our <span className="text-white">Story</span>
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl">
+              Our <span className="text-accent">Legacy</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              From college dormitories to cutting-edge solutions, discover the
-              journey that's shaping the future of technology.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
+              From the halls of academia to the forefront of technological evolution. 
+              We are <span className="text-premium font-semibold">Nexovora</span> — 
+              architects of the future, builders of the impossible.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-neutral-900">
+      {/* Mission & Vision */}
+      <section className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="space-y-8"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                Our Mission
-              </h2>
-              <p className="text-lg text-gray-300 mb-6">
-                At Nexovora, we believe technology should solve real-world
-                problems and create meaningful impact. Our mission is to develop
-                innovative digital solutions that transform industries and
-                improve lives across education, mobility, and infrastructure.
-              </p>
-              <p className="text-lg text-gray-400">
-                Born from the collaborative spirit of academia, we combine fresh
-                perspectives with cutting-edge technology to build products that
-                matter.
-              </p>
+              <div className="glass-card p-8 rounded-3xl border-l-4 border-accent">
+                <h2 className="text-3xl font-bold mb-4 text-white">Our Mission</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  To engineer digital solutions that transcend boundaries. We don't just write code; 
+                  we craft ecosystems that solve critical problems in education, mobility, and infrastructure. 
+                  We believe technology is the ultimate lever for human progress.
+                </p>
+              </div>
+              
+              <div className="glass-card p-8 rounded-3xl border-l-4 border-premium">
+                <h2 className="text-3xl font-bold mb-4 text-white">Our Vision</h2>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  A world where technology is seamless, intelligent, and universally accessible. 
+                  We envision Nexovora as the catalyst for a smarter, safer, and more connected tomorrow.
+                </p>
+              </div>
             </motion.div>
+
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="bg-neutral-800 rounded-lg p-8 text-gray-200 shadow-lg border border-gray-700">
-                <h3 className="text-2xl font-bold mb-4 text-white">
-                  Our Values
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-gray-300">
-                    <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>{" "}
-                    Innovation through collaboration
-                  </li>
-                  <li className="flex items-center text-gray-300">
-                    <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>{" "}
-                    Impact over profit
-                  </li>
-                  <li className="flex items-center text-gray-300">
-                    <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>{" "}
-                    Sustainable technology solutions
-                  </li>
-                  <li className="flex items-center text-gray-300">
-                    <span className="w-2 h-2 bg-gray-500 rounded-full mr-3"></span>{" "}
-                    Academic excellence in practice
-                  </li>
-                </ul>
+              <div className="absolute inset-0 bg-gradient-to-r from-premium to-accent opacity-20 blur-3xl rounded-full" />
+              <div className="glass-panel p-10 rounded-[2rem] relative border border-white/10">
+                <h3 className="text-3xl font-display font-bold mb-8 text-center text-white">Core Values</h3>
+                <div className="grid grid-cols-1 gap-6">
+                  {[
+                    { title: "Innovation", desc: "Relentless pursuit of the new." },
+                    { title: "Impact", desc: "Measuring success by lives improved." },
+                    { title: "Integrity", desc: "Building trust through transparency." },
+                    { title: "Excellence", desc: "Good enough is never enough." }
+                  ].map((value, index) => (
+                    <motion.div 
+                      key={index}
+                      whileHover={{ x: 10, backgroundColor: "rgba(255,255,255,0.05)" }}
+                      className="flex items-center p-4 rounded-xl transition-colors"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center mr-6 border border-white/10">
+                        <span className="text-xl font-bold text-accent">{index + 1}</span>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-white">{value.title}</h4>
+                        <p className="text-gray-400">{value.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Journey Timeline */}
-      <section className="py-20 bg-black text-white">
+      {/* Timeline */}
+      <section className="relative z-10 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-4xl md:text-5xl font-bold text-center mb-20 text-white"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
-              Our Journey
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
-              From incubation to innovation, here's how we've grown and what
-              lies ahead.
-            </p>
-          </motion.div>
+            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-premium to-accent">Journey</span>
+          </motion.h2>
 
           <div className="relative">
-            {/* Timeline line - hidden on mobile */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-700 hidden md:block"></div>
+            {/* Vertical Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
 
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className={`relative flex items-center mb-12 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } flex-col md:flex-row`}
-              >
-                <div
-                  className={`w-full md:w-1/2 ${
-                    index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:text-left"
-                  } text-center md:text-left`}
+            <div className="space-y-24">
+              {milestones.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`flex items-center justify-between w-full ${
+                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}
                 >
-                  <div className="bg-neutral-800 text-white p-6 rounded-lg shadow-lg border border-gray-700">
-                    <div className="text-gray-400 font-bold text-xl mb-2">
-                      {milestone.year}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-gray-300">{milestone.description}</p>
+                  <div className="w-5/12" />
+                  <div className="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-black border-4 border-accent shadow-[0_0_20px_rgba(233,69,96,0.5)]">
+                    <div className="w-3 h-3 bg-white rounded-full" />
                   </div>
-                </div>
-
-                {/* Timeline dot - centered on mobile, positioned for desktop */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-500 rounded-full border-4 border-black hidden md:block"></div>
-                <div className="w-4 h-4 bg-gray-500 rounded-full border-4 border-black md:hidden mb-4"></div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Incubation Story */}
-      <section className="py-20 bg-neutral-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white">
-              Incubated with{" "}
-              <span className="text-white">Purpose</span>
-            </h2>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg sm:text-xl text-gray-300 mb-6">
-                Nexovora was born in the heart of academic excellence, where
-                innovation meets opportunity. Our college incubation program
-                provided not just resources, but a community of forward-thinking
-                mentors and peers who believed in our vision.
-              </p>
-              <p className="text-lg sm:text-xl text-gray-400 mb-8">
-                This unique environment allowed us to take calculated risks,
-                experiment with cutting-edge technologies, and most importantly,
-                focus on creating solutions that address real-world challenges
-                rather than just chasing market trends.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                {[
-                  { number: "8", label: "Team Members", icon: "👥" },
-                  { number: "3", label: "Products Launched", icon: "🚀" },
-                  { number: "2", label: "Years of Innovation", icon: "⏰" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-center"
-                  >
-                    <div className="text-4xl mb-2">{stat.icon}</div>
-                    <div className="text-4xl font-bold text-white mb-2">
-                      {stat.number}
+                  <div className="w-5/12">
+                    <div className="glass-card p-8 rounded-2xl hover:border-accent/50 transition-colors group">
+                      <span className="text-5xl font-bold text-white/10 absolute top-4 right-6 group-hover:text-accent/20 transition-colors">
+                        {item.year}
+                      </span>
+                      <h3 className="text-2xl font-bold text-white mb-3 relative z-10">{item.title}</h3>
+                      <p className="text-gray-400 relative z-10">{item.description}</p>
                     </div>
-                    <div className="text-gray-400">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

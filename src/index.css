@@ -1,31 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-
 @tailwind utilities;
 
-/* Premium black & white scrollbar */
+/* Premium dark scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #0F0F23;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  background: linear-gradient(180deg, #1A1A2E 0%, #6C63FF 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  background: linear-gradient(180deg, #6C63FF 0%, #E94560 100%);
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #374151 #000000;
+  scrollbar-color: #6C63FF #0F0F23;
 }
 
 /* Smooth scroll behavior */
@@ -34,9 +33,56 @@ html {
 }
 
 body {
-  background: #eeeeee;
-  color: #0f044c;
+  background: #050510;
+  color: #ffffff;
+  overflow-x: hidden;
 }
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(108, 99, 255, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F39C12 0%, #F1C40F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #E94560 0%, #FF6B6B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3D Transforms - Removed to use Tailwind arbitrary values */
+
 
 /* Navbar underline animations */
 .nav-link {
@@ -448,15 +494,6 @@ body {
     inset 0 2px 4px rgba(96, 165, 250, 0.1);
 }
 
-.perspective {
-  perspective: 1000px;
-}
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
 .rotate-y-180 {
   transform: rotateY(180deg);
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,10 +9,8 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
-    console.log(scrolled);
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -29,101 +27,125 @@ const Navbar: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 bg-black backdrop-blur-md shadow-lg`}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "py-2 bg-primary/80 backdrop-blur-md shadow-glass"
+          : "py-6 bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
-          {/* Logo on the left */}
-          <Link to="/" className="flex items-center">
-            <motion.img
-              src="NEXOVORAwhitelogo.png"
-              alt="Nexovora Logo"
-              className="h-16 sm:h-20 w-auto"
-            />
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center group">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-r from-premium to-accent opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-500 rounded-full" />
+              <img
+                src="NEXOVORAwhitelogo.png"
+                alt="Nexovora Logo"
+                className="h-12 sm:h-14 w-auto relative z-10"
+              />
+            </motion.div>
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex flex-1 justify-end items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`nav-link font-semibold text-base lg:text-lg transition-colors duration-300 cursor-pointer px-3 py-2 focus:outline-none ${
-                  location.pathname === item.path
-                    ? "text-white active"
-                    : "text-white hover:text-gray-300"
-                }`}
-                aria-current={
-                  location.pathname === item.path ? "page" : undefined
-                }
-              >
-                {item.name}
-              </Link>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            <div className="flex items-center bg-white/5 backdrop-blur-sm rounded-full px-2 py-1 border border-white/10">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                >
+                  {location.pathname === item.path && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute inset-0 bg-white/10 rounded-full"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 ${
+                      location.pathname === item.path
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-6 px-6 py-2.5 bg-gradient-to-r from-premium to-accent rounded-full text-white text-sm font-semibold shadow-lg shadow-premium/20 hover:shadow-premium/40 transition-all duration-300"
+            >
+              Get Started
+            </motion.button>
           </div>
+
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-gray-300 focus:outline-none transition-colors duration-300"
+              className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <motion.span
+                  animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                  className="w-full h-0.5 bg-white rounded-full origin-left transition-all"
+                />
+                <motion.span
+                  animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                  className="w-full h-0.5 bg-white rounded-full transition-all"
+                />
+                <motion.span
+                  animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                  className="w-full h-0.5 bg-white rounded-full origin-left transition-all"
+                />
+              </div>
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-primary/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-black rounded-lg mt-2 border border-white/10">
+            <div className="px-4 pt-2 pb-6 space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 cursor-pointer focus:outline-none ${
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${
                     location.pathname === item.path
-                      ? "text-white bg-white/10 border-l-2 border-white"
-                      : "text-white hover:text-gray-300 hover:bg-white/5"
+                      ? "bg-white/10 text-white"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
                   }`}
-                  aria-current={
-                    location.pathname === item.path ? "page" : undefined
-                  }
                 >
                   {item.name}
                 </Link>
               ))}
+              <button className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-premium to-accent rounded-xl text-white font-semibold shadow-lg shadow-premium/20">
+                Get Started
+              </button>
             </div>
           </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </motion.nav>
   );
 };
