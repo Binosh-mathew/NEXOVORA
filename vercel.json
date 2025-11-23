@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "nexovora.tech" }
+      ],
+      "destination": "https://www.nexovora.tech/:1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
