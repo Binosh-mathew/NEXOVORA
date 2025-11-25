@@ -75,109 +75,102 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16 bg-neutral-900 text-white">
+    <div className="min-h-screen pt-20 bg-background text-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-1/2 w-[1000px] h-[1000px] bg-premium/5 rounded-full blur-[120px] transform -translate-x-1/2" />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Our <span className="text-white">Products</span>
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl">
+              Innovation <span className="text-accent">Portfolio</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Innovative solutions designed to transform industries and improve
-              lives. Each product represents our commitment to engineering
-              impact.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
+              Engineering excellence for a smarter tomorrow. Explore our suite of solutions designed to transform industries.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section className="py-20 bg-neutral-900">
+      <section className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-20"
+            className="space-y-32"
           >
             {products.map((product, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${
                   index % 2 === 1 ? "lg:grid-flow-row-dense" : ""
                 }`}
               >
                 {/* Product Info */}
                 <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-6 space-x-4">
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
+                      className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase ${
                         product.status === "Live"
-                          ? "bg-black text-white"
+                          ? "bg-accent/20 text-accent border border-accent/50"
                           : product.status === "Prototype"
-                          ? "bg-gray-700 text-white"
-                          : "bg-gray-800 text-gray-200"
+                          ? "bg-premium/20 text-premium border border-premium/50"
+                          : "bg-highlight/20 text-highlight border border-highlight/50"
                       }`}
                     >
                       {product.status}
                     </span>
-                    <span className="ml-3 text-sm text-gray-400">
+                    <span className="text-sm text-gray-400 font-medium tracking-wide uppercase border-l border-gray-700 pl-4">
                       {product.category}
                     </span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                  <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 leading-tight">
                     {product.name}
                   </h2>
 
-                  <p className="text-lg sm:text-xl text-gray-300 font-semibold mb-6">
+                  <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 font-semibold mb-8">
                     {product.tagline}
                   </p>
 
-                  <p className="text-base sm:text-lg text-gray-400 mb-8">
+                  <p className="text-lg text-gray-400 mb-10 leading-relaxed">
                     {product.description}
                   </p>
 
-                  <div className="mb-8">
-                    <h4 className="text-base sm:text-lg font-semibold text-white mb-4">
-                      Key Features:
+                  <div className="mb-10">
+                    <h4 className="text-lg font-bold text-white mb-6 flex items-center">
+                      <span className="w-8 h-[2px] bg-accent mr-4"></span>
+                      Key Capabilities
                     </h4>
-                    <ul className="grid grid-cols-1 gap-3 sm:gap-2 sm:grid-cols-2">
+                    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       {product.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
-                          className="flex items-start text-gray-400"
+                          className="flex items-start text-gray-300 group"
                         >
-                          <svg
-                            className="w-4 h-4 text-white mr-3 flex-shrink-0 mt-0.5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <span className="text-sm sm:text-base">{feature}</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 mr-3 group-hover:scale-150 transition-transform" />
+                          <span className="text-base group-hover:text-white transition-colors">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-black text-white px-6 sm:px-8 py-3 rounded-lg font-semibold transition-all duration-200 border-2 border-black hover:bg-gray-800 hover:border-gray-700 text-sm sm:text-base">
-                      Learn More
+                  <div className="flex flex-col sm:flex-row gap-6">
+                    <button className="px-8 py-4 rounded-xl font-bold text-white bg-accent hover:bg-accent/80 transition-all duration-300 shadow-[0_0_20px_rgba(233,69,96,0.3)] hover:shadow-[0_0_30px_rgba(233,69,96,0.5)] hover:-translate-y-1">
+                      Explore Solution
                     </button>
-                    <button className="bg-white text-black px-6 sm:px-8 py-3 rounded-lg font-semibold transition-all duration-200 border-2 border-white hover:bg-gray-200 hover:text-black hover:border-gray-400 text-sm sm:text-base">
+                    <button className="px-8 py-4 rounded-xl font-bold text-white border border-white/20 hover:bg-white/5 transition-all duration-300 hover:-translate-y-1">
                       Request Demo
                     </button>
                   </div>
@@ -189,17 +182,24 @@ const Products: React.FC = () => {
                     index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
                   }
                 >
-                  <motion.div whileHover={{ scale: 1.05 }} className="relative">
-                    <div className="w-full h-64 sm:h-80 rounded-2xl bg-black flex items-center justify-center shadow-lg text-white">
-                      <div className="text-6xl sm:text-8xl opacity-80">{product.icon}</div>
-                    </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.02, rotateY: 5 }} 
+                    transition={{ type: "spring", stiffness: 100 }}
+                    className="relative perspective-1000"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-premium to-accent opacity-20 blur-3xl rounded-full" />
+                    
+                    <div className="glass-panel relative w-full aspect-square rounded-[2rem] flex items-center justify-center border border-white/10 overflow-hidden group">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      
+                      <div className="text-9xl transform group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                        {product.icon}
+                      </div>
 
-                    {/* Floating Elements */}
-                    <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-full flex items-center justify-center shadow-lg">
-                      <div className="text-xl sm:text-2xl text-white">{product.icon}</div>
+                      {/* Decorative Elements */}
+                      <div className="absolute top-8 right-8 w-24 h-24 border border-white/10 rounded-full animate-[spin_10s_linear_infinite]" />
+                      <div className="absolute bottom-8 left-8 w-16 h-16 border border-white/10 rounded-full animate-[spin_8s_linear_infinite_reverse]" />
                     </div>
-
-                    <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-full animate-pulse"></div>
                   </motion.div>
                 </div>
               </motion.div>
@@ -209,7 +209,7 @@ const Products: React.FC = () => {
       </section>
 
       {/* Technology Stack */}
-      <section className="py-20 bg-black text-white">
+      <section className="relative z-10 py-24 bg-black/30 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -218,19 +218,15 @@ const Products: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-              Built with{" "}
-              <span className="text-white">
-                Cutting-Edge Technology
-              </span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+              Powered by <span className="text-accent">Intelligence</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-              Our products leverage the latest technologies to deliver
-              exceptional performance, scalability, and user experience.
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Our stack leverages cutting-edge frameworks to ensure scalability, security, and speed.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
             {[
               { name: "React", icon: "⚛️" },
               { name: "Node.js", icon: "🟢" },
@@ -245,11 +241,11 @@ const Products: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.1 }}
-                className="text-center p-4 sm:p-6 bg-neutral-800 text-white rounded-lg shadow hover:bg-black hover:text-white transition-all duration-200"
+                whileHover={{ y: -10 }}
+                className="glass-card p-6 rounded-2xl flex flex-col items-center justify-center hover:border-accent/50 transition-colors group"
               >
-                <div className="text-2xl sm:text-4xl mb-2 sm:mb-3">{tech.icon}</div>
-                <div className="text-xs sm:text-sm font-medium">{tech.name}</div>
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{tech.icon}</div>
+                <div className="text-sm font-bold text-gray-300 group-hover:text-white">{tech.name}</div>
               </motion.div>
             ))}
           </div>
@@ -257,28 +253,31 @@ const Products: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-neutral-900">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 py-24">
+        <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="glass-panel p-12 rounded-[3rem] border border-white/10 relative overflow-hidden"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              Interested in Our Solutions?
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400 mb-8">
-              Get in touch to learn more about how our products can benefit your
-              organization or to discuss potential collaborations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-black text-white px-6 sm:px-8 py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 border-2 border-black hover:bg-gray-800 hover:border-gray-700">
-                Schedule a Demo
-              </button>
-              <button className="bg-white text-black px-6 sm:px-8 py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 border-2 border-white hover:bg-gray-200 hover:text-black hover:border-gray-400">
-                Contact Sales
-              </button>
+            <div className="absolute inset-0 bg-gradient-to-r from-premium/20 to-accent/20 blur-3xl" />
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Transform Your Future?
+              </h2>
+              <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Join the revolution. Whether you're an institution, a city planner, or an innovator, we have the tools you need.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <button className="px-10 py-4 rounded-xl font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-105">
+                  Schedule Consultation
+                </button>
+                <button className="px-10 py-4 rounded-xl font-bold text-black bg-white hover:bg-gray-200 transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                  Contact Sales
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
