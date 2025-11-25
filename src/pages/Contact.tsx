@@ -98,48 +98,52 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16 bg-neutral-900 text-white">
+    <div className="min-h-screen pt-20 bg-background text-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] bg-premium/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px]" />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative z-10 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-              Get In <span className="text-white">Touch</span>
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl">
+              Let's <span className="text-accent">Connect</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Have questions about our products? Want to explore partnership
-              opportunities? We'd love to hear from you.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
+              Ready to start a conversation? Whether you have a question, a proposal, or just want to say hello, we're here.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Form and Info */}
-      <section className="py-20 bg-neutral-900 text-white">
+      <section className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 text-neutral-900"
+              className="glass-panel p-8 sm:p-10 rounded-[2rem] border border-white/10"
             >
-              <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-6">
+              <h2 className="text-3xl font-bold text-white mb-8">
                 Send us a Message
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="group">
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-secondary mb-2"
+                      className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-accent transition-colors"
                     >
                       Full Name *
                     </label>
@@ -150,14 +154,14 @@ const Contact: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-3 sm:px-4 py-3 sm:py-4 border border-tertiary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 bg-white text-primary text-sm sm:text-base"
-                      placeholder="Your full name"
+                      className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-white placeholder-gray-500 outline-none"
+                      placeholder="John Doe"
                     />
                   </div>
-                  <div>
+                  <div className="group">
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-secondary mb-2"
+                      className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-accent transition-colors"
                     >
                       Email Address *
                     </label>
@@ -168,16 +172,16 @@ const Contact: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 sm:px-4 py-3 sm:py-4 border border-tertiary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 bg-white text-primary text-sm sm:text-base"
-                      placeholder="your.email@example.com"
+                      className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-white placeholder-gray-500 outline-none"
+                      placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
-                <div>
+                <div className="group">
                   <label
                     htmlFor="company"
-                    className="block text-sm font-medium text-secondary mb-2"
+                    className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-accent transition-colors"
                   >
                     Company/Organization
                   </label>
@@ -187,40 +191,45 @@ const Contact: React.FC = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-3 sm:py-4 border border-tertiary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 bg-white text-primary text-sm sm:text-base"
-                    placeholder="Your company name (optional)"
+                    className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-white placeholder-gray-500 outline-none"
+                    placeholder="Nexovora Inc."
                   />
                 </div>
 
-                <div>
+                <div className="group">
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-secondary mb-2"
+                    className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-accent transition-colors"
                   >
                     Subject *
                   </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-3 sm:py-4 border border-tertiary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 bg-white text-primary text-sm sm:text-base"
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="product">Product Information</option>
-                    <option value="partnership">Partnership Opportunity</option>
-                    <option value="career">Career Inquiry</option>
-                    <option value="support">Technical Support</option>
-                    <option value="media">Media/Press</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-white appearance-none outline-none cursor-pointer"
+                    >
+                      <option value="" className="bg-neutral-900">Select a subject</option>
+                      <option value="general" className="bg-neutral-900">General Inquiry</option>
+                      <option value="product" className="bg-neutral-900">Product Information</option>
+                      <option value="partnership" className="bg-neutral-900">Partnership Opportunity</option>
+                      <option value="career" className="bg-neutral-900">Career Inquiry</option>
+                      <option value="support" className="bg-neutral-900">Technical Support</option>
+                      <option value="media" className="bg-neutral-900">Media/Press</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
+                      ▼
+                    </div>
+                  </div>
                 </div>
 
-                <div>
+                <div className="group">
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-secondary mb-2"
+                    className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-accent transition-colors"
                   >
                     Message *
                   </label>
@@ -231,8 +240,8 @@ const Contact: React.FC = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-3 sm:px-4 py-3 sm:py-4 border border-tertiary rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200 resize-vertical bg-white text-primary text-sm sm:text-base"
-                    placeholder="Tell us about your inquiry..."
+                    className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 text-white placeholder-gray-500 outline-none resize-none"
+                    placeholder="How can we help you?"
                   ></textarea>
                 </div>
 
@@ -240,15 +249,11 @@ const Contact: React.FC = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full btn-premium-dark text-accent py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-200"
+                  className="w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r from-premium to-accent hover:shadow-[0_0_30px_rgba(233,69,96,0.4)] transition-all duration-300"
                 >
                   Send Message
                 </motion.button>
               </form>
-
-              <p className="text-sm text-secondary mt-4">
-                * Required fields. We'll get back to you within 24 hours.
-              </p>
             </motion.div>
 
             {/* Contact Information */}
@@ -257,41 +262,40 @@ const Contact: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 space-y-6 sm:space-y-8"
+              className="space-y-8"
             >
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-accent mb-4 sm:mb-6">
+              <div className="glass-card p-8 rounded-[2rem] border border-white/10">
+                <h2 className="text-3xl font-bold text-white mb-6">
                   Contact Information
                 </h2>
-                <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base">
+                <p className="text-gray-400 mb-8 leading-relaxed">
                   We're here to help and answer any questions you might have.
                   Reach out through any of the following channels.
                 </p>
 
-                <div className="space-y-4 sm:space-y-6">
+                <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-center p-3 sm:p-4 bg-neutral-100 rounded-lg hover:shadow-lg transition-all duration-200"
+                      whileHover={{ x: 10 }}
+                      className="flex items-center p-4 rounded-xl hover:bg-white/5 transition-colors group"
                     >
-                      <div className="text-neutral-900 mr-3 sm:mr-4 text-lg sm:text-xl">{info.icon}</div>
+                      <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-accent mr-6 group-hover:scale-110 transition-transform border border-white/10">
+                        {info.icon}
+                      </div>
                       <div>
-                        <h3 className="font-semibold text-neutral-900 text-sm sm:text-base">
+                        <h3 className="font-bold text-white text-lg mb-1">
                           {info.title}
                         </h3>
                         {info.link !== "#" ? (
                           <a
                             href={info.link}
-                            className="text-gray-700 hover:text-black font-medium transition-colors duration-200 text-sm sm:text-base"
+                            className="text-gray-400 hover:text-accent transition-colors"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-gray-700 font-medium text-sm sm:text-base">
+                          <p className="text-gray-400">
                             {info.value}
                           </p>
                         )}
@@ -302,39 +306,42 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Social Links */}
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-neutral-900 mb-3 sm:mb-4">
+              <div className="glass-card p-8 rounded-[2rem] border border-white/10">
+                <h3 className="text-xl font-bold text-white mb-6">
                   Follow Us
                 </h3>
-                <div className="flex space-x-3 sm:space-x-4">
+                <div className="flex space-x-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={index}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 rounded-full flex items-center justify-center text-neutral-900 hover:bg-gray-300 hover:text-black border-2 border-gray-300 transition-all duration-200"
+                      whileHover={{ scale: 1.1, y: -5 }}
+                      className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-accent transition-all duration-300 border border-white/10"
                     >
-                      <span className="text-sm sm:text-base">{social.icon}</span>
+                      <span className="text-xl">{social.icon}</span>
                     </motion.a>
                   ))}
                 </div>
               </div>
 
               {/* Office Hours */}
-              <div className="bg-neutral-100 p-4 sm:p-6 rounded-lg text-neutral-900">
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Office Hours</h3>
-                <div className="space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
-                  <p>
-                    <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM
-                  </p>
-                  <p>
-                    <strong>Saturday:</strong> 10:00 AM - 2:00 PM
-                  </p>
-                  <p>
-                    <strong>Sunday:</strong> Closed
-                  </p>
+              <div className="glass-card p-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-premium/20 to-transparent">
+                <h3 className="text-xl font-bold text-white mb-4">Office Hours</h3>
+                <div className="space-y-2 text-gray-300">
+                  <div className="flex justify-between border-b border-white/10 pb-2">
+                    <span>Monday - Friday</span>
+                    <span className="font-semibold text-white">9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/10 pb-2">
+                    <span>Saturday</span>
+                    <span className="font-semibold text-white">10:00 AM - 2:00 PM</span>
+                  </div>
+                  <div className="flex justify-between pt-2">
+                    <span>Sunday</span>
+                    <span className="font-semibold text-accent">Closed</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -343,24 +350,24 @@ const Contact: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-neutral-900 text-white">
+      <section className="relative z-10 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300">
+            <p className="text-xl text-gray-400">
               Quick answers to common questions about Nexovora and our services.
             </p>
           </motion.div>
 
-          <div className="space-y-4 sm:space-y-6">
+          <div className="grid gap-6">
             {[
               {
                 question: "What types of partnerships does Nexovora explore?",
@@ -389,12 +396,13 @@ const Contact: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-neutral-800 rounded-lg p-4 sm:p-6"
+                className="glass-card p-8 rounded-2xl hover:border-accent/30 transition-colors"
               >
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+                  <span className="text-accent mr-3">Q.</span>
                   {faq.question}
                 </h3>
-                <p className="text-gray-300 font-medium text-sm sm:text-base">{faq.answer}</p>
+                <p className="text-gray-400 leading-relaxed pl-8 border-l-2 border-white/10">{faq.answer}</p>
               </motion.div>
             ))}
           </div>

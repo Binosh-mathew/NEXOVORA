@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  IoLogoFacebook,
   IoLogoGithub,
   IoLogoInstagram,
   IoLogoLinkedin,
-  IoLogoTwitter,
 } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -28,179 +26,96 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-black text-white border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="relative bg-background pt-20 pb-10 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="col-span-1 lg:col-span-2 flex flex-col items-start"
+            className="col-span-1 lg:col-span-2"
           >
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-6">
               <motion.img
                 src="NEXOVORAwhitelogo.png"
                 alt="Nexovora Logo"
-                className="h-11 w-auto rounded mr-4 cursor-pointer"
-                whileHover={{
-                  scale: 1.12,
-                  rotateY: 18,
-                  rotateX: 6,
-                  z: 20,
-                }}
-                animate={{
-                  rotateY: [0, 6, 0, -6, 0],
-                  rotateX: [0, 2, 0, -2, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
+                className="h-12 w-auto mr-4"
+                whileHover={{ scale: 1.05 }}
               />
-              <h3 className="text-2xl font-extrabold text-white">Nexovora</h3>
+              <h3 className="text-3xl font-display font-bold text-white tracking-tight">Nexovora</h3>
             </div>
-            <p className="text-gray-400 mb-6 max-w-xl text-base">
+            <p className="text-gray-400 mb-8 max-w-md text-lg leading-relaxed">
               A next-gen tech company incubated in college, building impactful
               digital solutions in education, mobility, and infrastructure.
-              Engineering Impact. Building the Future.
             </p>
             <div className="flex space-x-4">
-              {/* LinkedIn */}
-              <motion.a
-                href="https://linkedin.com/company/nexovora"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <IoLogoLinkedin className="w-6 h-6" />
-              </motion.a>
-              {/* Email */}
-              <motion.a
-                href="mailto:info@nexovora.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="Email"
-              >
-                <MdOutlineEmail className="w-6 h-6" />
-              </motion.a>
-              {/* Facebook */}
-              <motion.a
-                href="https://facebook.com/nexovora"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="Facebook"
-              >
-                <IoLogoFacebook className="w-6 h-6" />
-              </motion.a>
-              {/* Instagram */}
-              <motion.a
-                href="https://instagram.com/nexovora"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="Instagram"
-              >
-                <IoLogoInstagram className="w-6 h-6" />
-              </motion.a>
-              {/* Twitter */}
-              <motion.a
-                href="https://twitter.com/nexovora"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="Twitter"
-              >
-                <IoLogoTwitter className="w-6 h-6" />
-              </motion.a>
-              {/* GitHub */}
-              <motion.a
-                href="https://github.com/nexovora"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.13 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
-                aria-label="GitHub"
-              >
-                <IoLogoGithub className="w-6 h-6" />
-              </motion.a>
+              {[
+                { icon: IoLogoLinkedin, href: "https://linkedin.com/company/nexovora" },
+                { icon: MdOutlineEmail, href: "mailto:info@nexovora.com" },
+                { icon: IoLogoInstagram, href: "https://instagram.com/nexovora" },
+                { icon: IoLogoGithub, href: "https://github.com/nexovora" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-premium hover:border-premium transition-all duration-300 shadow-lg hover:shadow-premium/30"
+                >
+                  <social.icon className="w-6 h-6" />
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
-          {/* Company Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold mb-4 text-gray-200">
-              Company
-            </h4>
-            <ul className="space-y-2">
-              {footerLinks.company.map((item) => (
-                <li key={item.name}>
+          {/* Links */}
+          <div className="col-span-1">
+            <h4 className="text-white font-bold text-lg mb-6">Company</h4>
+            <ul className="space-y-4">
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
                   <Link
-                    to={item.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                    to={link.path}
+                    className="text-gray-400 hover:text-accent transition-colors duration-300 flex items-center group"
                   >
-                    {item.name}
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-accent mr-0 group-hover:mr-2 transition-all duration-300" />
+                    {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Legal Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold mb-4 text-gray-200">Legal</h4>
-            <ul className="space-y-2">
-              {footerLinks.legal.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
+          <div className="col-span-1">
+            <h4 className="text-white font-bold text-lg mb-6">Legal</h4>
+            <ul className="space-y-4">
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-gray-400 hover:text-accent transition-colors duration-300"
                   >
-                    {item.name}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-gray-800 my-6"></div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="text-gray-500 text-sm">
-            © {currentYear} Nexovora. All rights reserved. Incubated with
-            passion, built with purpose.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; {currentYear} Nexovora. All rights reserved.
           </p>
-        </motion.div>
+          <p className="text-gray-600 text-sm">
+            Designed with <span className="text-accent">♥</span> by Nexovora Team
+          </p>
+        </div>
       </div>
     </footer>
   );
